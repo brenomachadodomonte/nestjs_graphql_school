@@ -22,4 +22,9 @@ export class LessonService {
 
         return this.repository.save(lesson);
     }
+
+    getLesson(id: string): Promise<Lesson> {
+        return this.repository.findOne({ where: { id } });
+    }
+
 }

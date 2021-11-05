@@ -9,13 +9,10 @@ export class LessonResolver {
     constructor(private readonly service: LessonService){}
 
     @Query(returns => LessonType)
-    lesson() {
-        return {
-            id: 'abcdefghijklmnop',
-            name: 'NestJs Class',
-            startDate: (new Date()).toISOString(),
-            endDate: (new Date()).toISOString()
-        }
+    lesson(
+        @Args('id') id: string
+    ): Promise<Lesson> {
+        return this.service.getLesson(id);
     }
 
     @Mutation(returns => LessonType)
