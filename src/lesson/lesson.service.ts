@@ -29,4 +29,7 @@ export class LessonService {
         return this.repository.findOne({ where: { id } });
     }
 
+    getLessons(): Promise<Lesson[]> {
+        return this.repository.find();
+    }
 }
