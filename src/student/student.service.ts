@@ -25,4 +25,8 @@ export class StudentService {
 
         return this.repository.save(student);
     }
+
+    students(): Promise<Student[]> {
+        return this.repository.find();
+    }
 }
