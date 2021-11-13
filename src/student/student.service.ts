@@ -29,4 +29,8 @@ export class StudentService {
     students(): Promise<Student[]> {
         return this.repository.find();
     }
+
+    student(id: string): Promise<Student>{
+        return this.repository.findOne({ where: { id }});
+    }
 }
