@@ -32,4 +32,10 @@ export class LessonService {
     getLessons(): Promise<Lesson[]> {
         return this.repository.find();
     }
+
+    async assignStudentToLesson(lessonId: string, studentsId: string[]): Promise<Lesson> {
+        const lesson = await this.getLesson(lessonId);
+        lesson.students = [...lesson.students, ...studentsId];
+        return this.repository.save(lesson);
+    }
 }
