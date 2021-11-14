@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { Lesson } from './lesson.entity';
 import { Repository } from 'typeorm';
 import { CreateLessonInput } from './lesson.input';
+import { AssignStudentsToLessonInput } from './assign-students-to-lesson.input';
 
 @Injectable()
 export class LessonService {
@@ -33,7 +34,11 @@ export class LessonService {
         return this.repository.find();
     }
 
-    async assignStudentToLesson(lessonId: string, studentsId: string[]): Promise<Lesson> {
+    async assignStudentToLesson(input: AssignStudentsToLessonInput): Promise<Lesson> {
+        const {
+            lessonId,
+            studentsId
+        } = input;
         const lesson = await this.getLesson(lessonId);
         lesson.students = [...lesson.students, ...studentsId];
         return this.repository.save(lesson);
