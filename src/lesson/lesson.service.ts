@@ -5,6 +5,7 @@ import { Lesson } from './lesson.entity';
 import { Repository } from 'typeorm';
 import { CreateLessonInput } from './lesson.input';
 import { AssignStudentsToLessonInput } from './assign-students-to-lesson.input';
+import { Student } from 'src/student/student.entity';
 
 @Injectable()
 export class LessonService {
