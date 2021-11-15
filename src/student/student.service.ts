@@ -4,6 +4,7 @@ import { In, Repository } from 'typeorm';
 import { Student } from './student.entity';
 import { CreateStudentInput } from './student.input';
 import { v4 as uuid } from 'uuid';
+import { $in } from 'mongodb';
 
 @Injectable()
 export class StudentService {
@@ -34,7 +35,7 @@ export class StudentService {
         return this.repository.findOne({ where: { id }});
     }
 
-    studentsByIds(studentsIds: string[]): Promise<Student[]> {
-        return this.repository.find({ where: { id: In(studentsIds)}});
+    async studentsByIds(studentsIds: string[]): Promise<Student[]> {
+        return this.repository.find();
     }
 }

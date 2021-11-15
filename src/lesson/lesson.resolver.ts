@@ -1,4 +1,5 @@
 import { Args, Mutation, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
+import { Student } from "src/student/student.entity";
 import { StudentService } from "src/student/student.service";
 import { AssignStudentsToLessonInput } from "./assign-students-to-lesson.input";
 import { Lesson } from "./lesson.entity";
@@ -41,7 +42,8 @@ export class LessonResolver {
     }
 
     @ResolveField()
-    async students(@Parent() lesson: Lesson){
+    async students(@Parent() lesson: Lesson): Promise<Student[]>{
+        console.log(lesson.students);
         return this.studentService.studentsByIds(lesson.students);
     }
 }
