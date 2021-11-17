@@ -36,6 +36,15 @@ export class StudentService {
     }
 
     async studentsByIds(studentsIds: string[]): Promise<Student[]> {
-        return this.repository.find();
+        if(studentsIds === undefined){
+            studentsIds = [];
+        }
+        return this.repository.find({ 
+            where: {
+                id: {
+                    $in: studentsIds
+                }
+            }
+        });
     }
 }

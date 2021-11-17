@@ -43,7 +43,6 @@ export class LessonResolver {
 
     @ResolveField()
     async students(@Parent() lesson: Lesson): Promise<Student[]>{
-        console.log(lesson.students);
         return this.studentService.studentsByIds(lesson.students);
     }
 }
